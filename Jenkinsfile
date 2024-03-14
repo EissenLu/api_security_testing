@@ -5,7 +5,7 @@ pipeline {
             }
       }
     triggers {
-        pollSCM '* * * * *' //Aktives Polling jden Minute - *5*** ist alle 5 Minuten
+        pollSCM '* * * * *' //Aktives Polling jeden Minute - *5*** ist alle 5 Minuten
     }
     stages {
         stage('Build') {
@@ -23,6 +23,7 @@ pipeline {
                 sh '''
                 cd myapp
                 python3 hello.py
+                python3 hello.py -name="Test Name"
                 '''
             }
         }
