@@ -17,6 +17,16 @@ pipeline {
                 '''
             }
         }
+        stage('42Crunch Audit-Sacn'){
+            steps {
+            audit repositoryName: "${env.GIT_URL}", 
+            branchName: "${env.GIT_LOCAL_BRANCH}", 
+            credentialsId: '42crunch-token-id', 
+            minScore: 75, 
+            platformUrl: 'https://platform.42crunch.com', 
+            logLevel: 'DEBUG'
+        }
+        }
         stage('Test') {
             steps {
                 echo "Testing.."
