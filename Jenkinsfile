@@ -20,6 +20,7 @@ pipeline {
         stage('42Crunch Audit-Sacn'){
             steps {
             echo "Run Audit-Scan"
+            sleep 100
         }
         }
         stage('Test') {
