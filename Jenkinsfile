@@ -8,37 +8,22 @@ pipeline {
         pollSCM '* * * * *' //Aktives Polling jeden Minute - *5*** ist alle 5 Minuten
     }
     stages {
-        stage('Build') {
-            steps {
-                echo "Building.."
-                sh '''
-                cd myapp
-                pip install -r requirements.txt
-                '''
-            }
-        }
-        stage('42Crunch Audit-Sacn'){
+        stage('42Crunch Audit-Scan'){
             steps {
             echo "Run Audit-Scan"
             sleep 100
         }
         }
-        stage('Test') {
+        stage('Deploy to API-Gateway') {
             steps {
                 echo "Testing.."
-                sh '''
-                cd myapp
-                python3 hello.py
-                python3 hello.py -name="Test Name"
-                '''
+                sleep 21
             }
         }
-        stage('Deliver') {
+        stage('API-Test') {
             steps {
                 echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                sleep 13
             }
         }
     }
