@@ -11,7 +11,7 @@ pipeline {
         stage('42Crunch Audit-Scan'){
             steps {
             echo "Run Audit-Scan"
-            sleep 100
+            sleep 37
         }
         }
         stage('Deploy to API-Gateway') {
