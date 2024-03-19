@@ -1,9 +1,52 @@
 openapi: 3.0.3
 info:
-  title: Title
-  description: Title
-  version: 1.0.0
+  title: Sicherheitsorientierte API-Spezifikation
+  description: |
+    OpenAPI-Spezifikation, die die OWASP API Top 10 Risiken, außer API 4, API 7, API 9 und API 10, adressiert.
+  version: "1.0"
+
 servers:
-  - url: 'https'
+  - url: https://api.sicherheitsapi.de/v1
+
 paths:
-  
+  /users/{userId}:
+    get:
+      summary: Benutzerdaten abrufen
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Erfolgreiche Antwort
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Benutzer nicht gefunden
+      security:
+        - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+      required:
+        - id
+        - username
