@@ -11,8 +11,8 @@ pipeline {
         stage('42Crunch Audit-Scan'){
             steps {
             echo "Run Audit-Scan"
-            echo "The build URL of this Job is: ${GIT_LOCAL_BRANCH}"
-            echo "The build URL of this Job is: ${GIT_URL}"
+            echo "The build URL of this Job is: ${env.GIT_LOCAL_BRANCH}"
+            echo "The build URL of this Job is: ${env.GIT_URL}"
             sleep 37
         }
         }
